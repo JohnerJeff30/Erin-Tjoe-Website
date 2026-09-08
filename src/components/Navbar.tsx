@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Shield, Calendar, Disc, Sparkles } from 'lucide-react';
+import { Menu, X, Shield, Calendar, Disc, Sparkles, Trophy, FileText, Zap } from 'lucide-react';
 
 interface NavbarProps {
   onOpenAdmin: () => void;
   isAdminLoggedIn: boolean;
+  onOpenMusicEPK?: () => void;
+  onOpenPickleballEPK?: () => void;
+  onOpenSupabaseModal?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, isAdminLoggedIn }) => {
+export const Navbar: React.FC<NavbarProps> = ({
+  onOpenAdmin,
+  isAdminLoggedIn,
+  onOpenMusicEPK,
+  onOpenPickleballEPK,
+  onOpenSupabaseModal,
+}) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -21,6 +30,8 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, isAdminLoggedIn }) 
   const navLinks = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
+    { name: 'EPK & Riders', href: '#epk-riders', badge: 'RIDER' },
+    { name: 'Pickleball Pro', href: '#pickleball', badge: 'PRO' },
     { name: 'Experience', href: '#experience' },
     { name: 'Music', href: '#music' },
     { name: 'Videos', href: '#videos' },
@@ -69,7 +80,45 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, isAdminLoggedIn }) 
         </nav>
 
         {/* Action Buttons */}
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-3">
+          {/* Dual EPK Quick Access */}
+          <div className="flex items-center gap-1.5 bg-white/5 p-1 rounded-full border border-white/10">
+            {onOpenMusicEPK && (
+              <button
+                type="button"
+                onClick={onOpenMusicEPK}
+                className="px-3 py-1 rounded-full text-[11px] font-semibold text-pink-300 hover:text-white hover:bg-pink-950/60 transition flex items-center gap-1"
+                title="Open Music Technical Rider & EPK"
+              >
+                <FileText className="w-3 h-3 text-pink-400" />
+                <span>Music EPK</span>
+              </button>
+            )}
+            {onOpenPickleballEPK && (
+              <button
+                type="button"
+                onClick={onOpenPickleballEPK}
+                className="px-3 py-1 rounded-full text-[11px] font-semibold text-amber-300 hover:text-white hover:bg-amber-950/60 transition flex items-center gap-1"
+                title="Open Pickleball Athlete Rider & EPK"
+              >
+                <Trophy className="w-3 h-3 text-amber-400" />
+                <span>Pickleball EPK</span>
+              </button>
+            )}
+          </div>
+
+          {onOpenSupabaseModal && (
+            <button
+              type="button"
+              onClick={onOpenSupabaseModal}
+              className="px-3 py-2 rounded-full border border-emerald-500/40 bg-emerald-950/40 hover:bg-emerald-950/80 text-emerald-300 text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 transition shadow-[0_0_12px_rgba(16,185,129,0.2)]"
+              title="Connect Website to Supabase Database"
+            >
+              <Zap className="w-3.5 h-3.5 fill-emerald-400 text-emerald-400" />
+              <span>Supabase</span>
+            </button>
+          )}
+
           <a
             href="#booking"
             className="px-5 py-2.5 text-xs tracking-wider uppercase font-semibold rounded-full bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 text-white shadow-[0_0_20px_rgba(236,72,153,0.4)] hover:shadow-[0_0_25px_rgba(236,72,153,0.6)] transition-all duration-300 flex items-center gap-2"
@@ -80,14 +129,15 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, isAdminLoggedIn }) 
 
           <button
             onClick={onOpenAdmin}
-            className={`p-2.5 rounded-full border transition-all duration-300 ${
+            className={`px-3 py-2 rounded-full border text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5 transition-all duration-300 ${
               isAdminLoggedIn
-                ? 'bg-purple-900/40 border-purple-400 text-pink-400 shadow-[0_0_15px_rgba(168,85,247,0.4)]'
-                : 'border-white/10 text-slate-400 hover:text-white hover:border-white/30'
+                ? 'bg-purple-950/80 border-purple-400 text-pink-300 shadow-[0_0_15px_rgba(168,85,247,0.4)]'
+                : 'border-white/10 text-slate-300 hover:text-white hover:border-white/30 bg-white/5'
             }`}
             title={isAdminLoggedIn ? 'Open Admin CMS' : 'Admin Login'}
           >
-            <Shield className="w-4 h-4" />
+            <Shield className="w-3.5 h-3.5 text-pink-400" />
+            <span>{isAdminLoggedIn ? 'CMS Active' : 'Admin'}</span>
           </button>
         </div>
 
@@ -124,17 +174,64 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenAdmin, isAdminLoggedIn }) 
               </a>
             ))}
           </nav>
-          <div className="pt-2 flex items-center justify-between">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenAdmin();
-              }}
-              className="flex items-center gap-2 text-xs uppercase tracking-wider text-purple-400 hover:text-purple-300"
-            >
-              <Shield className="w-4 h-4" />
-              <span>{isAdminLoggedIn ? 'CMS Dashboard' : 'Admin Portal'}</span>
-            </button>
+          <div className="pt-2 flex flex-col gap-2 border-t border-white/10">
+            <div className="grid grid-cols-2 gap-2">
+              {onOpenMusicEPK && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenMusicEPK();
+                  }}
+                  className="px-3 py-2 rounded-xl bg-pink-950/40 border border-pink-500/30 text-pink-300 text-xs font-semibold uppercase flex items-center justify-center gap-1.5"
+                >
+                  <FileText className="w-3.5 h-3.5" />
+                  <span>Music EPK</span>
+                </button>
+              )}
+              {onOpenPickleballEPK && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenPickleballEPK();
+                  }}
+                  className="px-3 py-2 rounded-xl bg-amber-950/40 border border-amber-500/30 text-amber-300 text-xs font-semibold uppercase flex items-center justify-center gap-1.5"
+                >
+                  <Trophy className="w-3.5 h-3.5" />
+                  <span>Pickleball EPK</span>
+                </button>
+              )}
+            </div>
+
+            <div className="flex flex-col gap-2 pt-1">
+              {onOpenSupabaseModal && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenSupabaseModal();
+                  }}
+                  className="w-full py-2.5 rounded-xl bg-emerald-950/50 border border-emerald-500/40 text-emerald-300 text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2"
+                >
+                  <Zap className="w-3.5 h-3.5 fill-emerald-400 text-emerald-400" />
+                  <span>Connect Supabase Database</span>
+                </button>
+              )}
+
+              <div className="flex items-center justify-between pt-1">
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenAdmin();
+                  }}
+                  className="flex items-center gap-2 text-xs uppercase tracking-wider text-purple-400 hover:text-purple-300"
+                >
+                  <Shield className="w-4 h-4" />
+                  <span>{isAdminLoggedIn ? 'CMS Dashboard' : 'Admin Portal'}</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )}

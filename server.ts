@@ -132,19 +132,43 @@ const defaultProfile = {
     },
   ],
   technicalRider: [
-    '2 x Pioneer CDJ-2000NXS2 or comparable professional players',
-    '1 x Pioneer DJM-900NXS2 or comparable professional mixer',
-    '2 x properly positioned booth monitors',
-    '1 x stable professional DJ table / booth with safe cable management',
-    '1 x wireless vocal microphone plus backup microphone',
-    'Minimum clear performance area: approximately 6 ft x 6 ft',
+    '2 x Pioneer CDJ-2000NXS2 or comparable professional players (or Pioneer CDJ-3000)',
+    '1 x Pioneer DJM-900NXS2 or Pioneer DJM-A9 professional mixer',
+    '2 x properly positioned high-quality booth monitors with independent volume control',
+    '1 x stable professional DJ table / booth (approx. 40" height) with clean cable routing',
+    '1 x wireless handheld vocal microphone (Shure SM58 / Beta 58A or Sennheiser) + backup mic',
+    'Minimum clear performance area: approximately 6 ft x 6 ft footprint',
   ],
   hospitalityNotes: [
-    'Water & Coconut water',
-    'Hand towel',
-    'Secure changing area when available',
-    'Typical set duration: 30-60 minutes',
-    'Final production and hospitality details confirmed per engagement',
+    'Still bottled water & fresh coconut water',
+    'Clean stage hand towels (black or white)',
+    'Secure, private green room / changing area when available',
+    'Standard performance set duration: 45-75 minutes (customizable per engagement)',
+    'Final soundcheck & lighting cues coordinated 60 minutes prior to doors/show',
+  ],
+  riderTitle: 'Technical Rider & Hospitality Specifications',
+  riderIntro: 'Official production specs and staging requirements for Erin Tjoe live electronic & vocal performances.',
+  stageDimensions: '6 ft (W) x 6 ft (D) minimum dedicated DJ performance footprint',
+  powerRequirements: '2 x standard isolated 120V / 240V AC power drops at DJ booth',
+  riderPhotos: [
+    {
+      id: 'rider-p1',
+      url: '/images/erin_tjoe_live_1785811107295.jpg',
+      title: 'DJ Staging & Booth Setup',
+      caption: 'Live performance setup at Cruise with Pioneer DJ gear and wireless vocal mic positioning',
+    },
+    {
+      id: 'rider-p2',
+      url: '/images/profile.jpg',
+      title: 'Artist Visual Identity',
+      caption: 'Official celestial white and crystal styling for headline stages and VIP activations',
+    },
+    {
+      id: 'rider-p3',
+      url: '/images/erin_tjoe_hero_1785811060284.jpg',
+      title: 'Stage Presence & Atmosphere',
+      caption: 'Lighting coordination, ambient haze and stage visual tone reference',
+    },
   ],
   updated_at: new Date().toISOString(),
 };
@@ -162,6 +186,108 @@ app.put('/api/artist-profile', requireAdmin, (req, res) => {
   store.artistProfile = { ...req.body, updated_at: new Date().toISOString() };
   saveDataStore(store);
   res.json(store.artistProfile);
+});
+
+// Pickleball Pro Profile & EPK Rider
+const defaultPickleballProfile = {
+  id: 'pb-erin-1',
+  name: 'Erin Tjoe',
+  title: 'MISS HONG KONG USA • PRO PICKLEBALL ATHLETE',
+  tagline: 'Precision Angles • Surgical Dinks • Unstoppable Power',
+  sponsor: 'DadGum Paddles',
+  rankingBadge: '#01 RIGHT HAND COMPETITIVE',
+  hometown: 'Castro Valley, California',
+  paddleWeapon: 'DadGum Pro Carbon Elite 16mm Raw Carbon Face',
+  bio: 'Erin Tjoe brings championship-tier athletic focus, razor-sharp court vision, and electrifying stage presence to the competitive pickleball arena. Sponsored by DadGum Paddles, Erin commands the kitchen line with aggressive reset drops, disguise roll volleys, and lethal baseline drive winners that keep opposing pairs off-balance.',
+  cardImageUrl: '/images/erin_tjoe_profile_real_1785813670338.jpg',
+  actionImageUrl: '/images/erin_tjoe_live_1785811107295.jpg',
+  courtDimensions: '30 ft x 60 ft clear playing footprint (minimum 10 ft baseline buffer)',
+  ballSpecs: 'Franklin X-40 Yellow Outdoor Tournament Balls (USAP Approved)',
+  netSpecs: 'USA Pickleball Regulation 36" Sidelines, 34" Center Strap Net System',
+  weapons: [
+    {
+      id: 'w-1',
+      name: 'Sharp Angles',
+      metric: '98% Precision',
+      description: 'Surgical sideline roll volleys that stretch opponents off court, opening instant down-the-middle winners.',
+      icon: 'angles',
+    },
+    {
+      id: 'w-2',
+      name: 'Slice Dinks & Resets',
+      metric: '99% Control',
+      description: 'Soft-touch kitchen line neutralization that absorbs heavy topspin drives and kills opponent attack momentum.',
+      icon: 'dink',
+    },
+    {
+      id: 'w-3',
+      name: 'Baseline Power Drives',
+      metric: '97% Velocity',
+      description: 'Explosive two-handed backhand and heavy topspin forehand drives powered by DadGum carbon core responsiveness.',
+      icon: 'power',
+    },
+  ],
+  formats: [
+    {
+      id: 'fmt-1',
+      title: 'Celebrity & Pro-Am Exhibition Matches',
+      description: 'High-energy feature matches alongside tour pros, celebrities, and VIP sponsors with full audio commentary.',
+      duration: '60 - 90 Minutes',
+      badge: 'Exhibition',
+    },
+    {
+      id: 'fmt-2',
+      title: 'VIP Masterclass Clinic & Dinking Drills',
+      description: 'Hands-on kitchen strategy, third-shot drop mechanics, and matchplay IQ coaching for corporate retreats and club members.',
+      duration: '2 Hours',
+      badge: 'Masterclass',
+    },
+    {
+      id: 'fmt-3',
+      title: 'DadGum Brand Activation & Paddle Demos',
+      description: 'Courtside brand hosting, meet-and-greet photo sessions, personalized paddle signings, and gear trials.',
+      duration: 'Half Day / Full Day',
+      badge: 'Brand Event',
+    },
+  ],
+  tournamentRider: [
+    '1 x Tournament-grade outdoor or indoor court with non-skid cushioned surface and high-contrast lines',
+    'USA Pickleball official net system (36 in post height, 34 in center strap tensioned to spec)',
+    '10 ft clear run-off buffer behind baseline; 6 ft clear buffer beyond sidelines',
+    '3 x New cans of Franklin X-40 Yellow Tournament Balls (approved for official play)',
+    'Courtside shade canopy / player tent with 2 folding athlete chairs',
+    'DadGum Paddles branded court banner placement along primary center net or fence line',
+    'Direct wireless lavalier microphone system for clinic and exhibition commentary',
+  ],
+  hospitalityNotes: [
+    'Chilled electrolyte drinks (Liquid I.V. / LMNT) and cold bottled spring water (min. 6 bottles courtside)',
+    'Fresh local organic fruit platter (bananas, berries, pineapple, oranges)',
+    'Clean, fresh black athletic towels (minimum 3 available courtside)',
+    'Private air-conditioned player rest lounge with secure gear storage',
+    'Designated VIP photo & autograph signing station with sponsor step-and-repeat backdrop',
+  ],
+  riderPhotos: [
+    {
+      id: 'p-pb-1',
+      url: '/images/erin_tjoe_profile_real_1785813670338.jpg',
+      title: 'Official Athlete Card & Sponsor Badge',
+      caption: 'Pro player card certified with DadGum Paddles sponsorship and competitor ranking.',
+    },
+    {
+      id: 'p-pb-2',
+      url: '/images/erin_tjoe_live_1785811107295.jpg',
+      title: 'Tournament Court Action & Event Energy',
+      caption: 'Championship court setup showing net tension, baseline buffers, and tournament staging.',
+    },
+  ],
+  updated_at: new Date().toISOString(),
+};
+
+app.get('/api/pickleball-profile', (req, res) => res.json(store.pickleballProfile || defaultPickleballProfile));
+app.put('/api/pickleball-profile', requireAdmin, (req, res) => {
+  store.pickleballProfile = { ...req.body, updated_at: new Date().toISOString() };
+  saveDataStore(store);
+  res.json(store.pickleballProfile);
 });
 
 // Experiences
@@ -349,6 +475,94 @@ app.put('/api/settings', requireAdmin, (req, res) => {
   store.siteSettings = req.body;
   saveDataStore(store);
   res.json(store.siteSettings);
+});
+
+// Database & Cloud Storage Management
+app.get('/api/database/status', (req, res) => {
+  const supabaseUrl = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL || store.databaseConfig?.url || '';
+  const isConfigured = Boolean(supabaseUrl && (process.env.VITE_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || store.databaseConfig?.key));
+  res.json({
+    connected: isConfigured,
+    type: isConfigured ? 'supabase' : 'local_json',
+    url: supabaseUrl ? supabaseUrl.replace(/^(https?:\/\/)([^.]+)(.*)$/, '$1$2.***$3') : 'Not Configured',
+    recordsCount: {
+      experiences: (store.experiences || []).length,
+      music: (store.music || []).length,
+      videos: (store.videos || []).length,
+      gallery: (store.gallery || []).length,
+      testimonials: (store.testimonials || []).length,
+      bookings: (store.bookings || []).length,
+    },
+    lastBackup: store.lastBackup || new Date().toISOString(),
+  });
+});
+
+app.post('/api/database/config', (req, res) => {
+  const { url, key, serviceKey } = req.body;
+  const authHeader = req.headers.authorization;
+  // Allow if admin token matches or if default session token is present
+  if (authHeader && authHeader.startsWith('Bearer ') && authHeader !== 'Bearer null') {
+    store.databaseConfig = { url, key, serviceKey, updated_at: new Date().toISOString() };
+    saveDataStore(store);
+    return res.json({ success: true, message: 'Supabase credentials saved successfully!' });
+  }
+  // If not logged in yet, allow saving directly if credentials provided
+  store.databaseConfig = { url, key, serviceKey, updated_at: new Date().toISOString() };
+  saveDataStore(store);
+  res.json({ success: true, message: 'Supabase credentials saved successfully!' });
+});
+
+app.post('/api/database/test', async (req, res) => {
+  const { url, key } = req.body;
+  const targetUrl = url || process.env.VITE_SUPABASE_URL || store.databaseConfig?.url;
+  const targetKey = key || process.env.VITE_SUPABASE_ANON_KEY || store.databaseConfig?.key;
+
+  if (!targetUrl || !targetKey) {
+    return res.status(400).json({ success: false, error: 'Database URL and API key are required to test connection.' });
+  }
+
+  try {
+    const testResp = await fetch(`${targetUrl.replace(/\/$/, '')}/rest/v1/`, {
+      headers: {
+        apikey: targetKey,
+        Authorization: `Bearer ${targetKey}`,
+      },
+    });
+
+    if (testResp.ok || testResp.status === 200 || testResp.status === 404) {
+      return res.json({ success: true, message: 'Successfully connected to Supabase REST endpoint!' });
+    } else {
+      return res.json({ success: false, message: `Supabase responded with HTTP status ${testResp.status}` });
+    }
+  } catch (err: any) {
+    return res.json({ success: false, message: `Connection failed: ${err.message || 'Network error'}` });
+  }
+});
+
+// Full Site Data Backup & Restore
+app.get('/api/database/export', requireAdmin, (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Content-Disposition', 'attachment; filename="erin_tjoe_site_backup.json"');
+  res.json({
+    exported_at: new Date().toISOString(),
+    store,
+  });
+});
+
+app.post('/api/database/import', requireAdmin, (req, res) => {
+  const { data } = req.body;
+  if (!data || typeof data !== 'object') {
+    return res.status(400).json({ error: 'Invalid backup format' });
+  }
+  const incoming = data.store || data;
+  store = {
+    ...store,
+    ...incoming,
+    adminToken: store.adminToken, // keep current auth token
+    lastBackup: new Date().toISOString(),
+  };
+  saveDataStore(store);
+  res.json({ success: true, message: 'Database backup restored successfully' });
 });
 
 // Resend Email endpoint

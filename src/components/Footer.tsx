@@ -1,11 +1,12 @@
 import React from 'react';
-import { Sparkles, Shield, ArrowUp } from 'lucide-react';
+import { Sparkles, Shield, ArrowUp, Zap } from 'lucide-react';
 
 interface FooterProps {
   onOpenAdmin: () => void;
+  onOpenSupabaseModal?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
+export const Footer: React.FC<FooterProps> = ({ onOpenAdmin, onOpenSupabaseModal }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -33,6 +34,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
           {/* Quick Links */}
           <nav className="flex flex-wrap justify-center gap-6 text-xs uppercase tracking-widest text-slate-300 font-semibold">
             <a href="#about" className="hover:text-pink-400 transition">About</a>
+            <a href="#epk-riders" className="hover:text-pink-400 transition">EPK Riders</a>
+            <a href="#pickleball" className="hover:text-pink-400 transition">Pickleball</a>
             <a href="#experience" className="hover:text-pink-400 transition">Experience</a>
             <a href="#music" className="hover:text-pink-400 transition">Music</a>
             <a href="#videos" className="hover:text-pink-400 transition">Videos</a>
@@ -55,6 +58,15 @@ export const Footer: React.FC<FooterProps> = ({ onOpenAdmin }) => {
           <p>© {new Date().getFullYear()} Erin Tjoe Official. All Rights Reserved.</p>
           <div className="flex items-center gap-6">
             <span>California • Available Worldwide</span>
+            {onOpenSupabaseModal && (
+              <button
+                onClick={onOpenSupabaseModal}
+                className="hover:text-emerald-400 text-emerald-500/80 flex items-center gap-1 transition"
+              >
+                <Zap className="w-3.5 h-3.5 fill-emerald-400 text-emerald-400" />
+                <span>Connect Supabase</span>
+              </button>
+            )}
             <button
               onClick={onOpenAdmin}
               className="hover:text-purple-400 flex items-center gap-1 transition"

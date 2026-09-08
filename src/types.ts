@@ -18,6 +18,13 @@ export interface PerformanceFormat {
   badge?: string;
 }
 
+export interface RiderPhoto {
+  id: string;
+  url: string;
+  caption?: string;
+  title?: string;
+}
+
 export interface ArtistProfile {
   id: string;
   name: string;
@@ -30,6 +37,11 @@ export interface ArtistProfile {
   performanceFormats: PerformanceFormat[];
   technicalRider: string[];
   hospitalityNotes: string[];
+  riderPhotos?: RiderPhoto[];
+  riderTitle?: string;
+  riderIntro?: string;
+  stageDimensions?: string;
+  powerRequirements?: string;
   updated_at?: string;
 }
 
@@ -135,3 +147,43 @@ export interface SiteSettings {
   enableBookingNotifications: boolean;
   adminNotificationEmail: string;
 }
+
+export interface WeaponStat {
+  id: string;
+  name: string;
+  description: string;
+  metric: string;
+  icon?: 'angles' | 'power' | 'dink' | 'speed' | 'defense';
+}
+
+export interface PickleballClinicFormat {
+  id: string;
+  title: string;
+  description: string;
+  duration?: string;
+  badge?: string;
+}
+
+export interface PickleballProfile {
+  id: string;
+  name: string;
+  title: string;
+  tagline: string;
+  sponsor: string;
+  rankingBadge: string;
+  hometown: string;
+  paddleWeapon: string;
+  bio: string;
+  cardImageUrl: string;
+  actionImageUrl: string;
+  weapons: WeaponStat[];
+  formats: PickleballClinicFormat[];
+  tournamentRider: string[];
+  hospitalityNotes: string[];
+  riderPhotos?: RiderPhoto[];
+  courtDimensions?: string;
+  ballSpecs?: string;
+  netSpecs?: string;
+  updated_at?: string;
+}
+

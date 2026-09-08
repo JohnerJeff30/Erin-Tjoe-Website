@@ -5,12 +5,14 @@ interface AdminLoginModalProps {
   isOpen: boolean;
   onClose: () => void;
   onLogin: (email: string, pass: string) => Promise<boolean>;
+  onOpenSupabaseModal?: () => void;
 }
 
 export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({
   isOpen,
   onClose,
   onLogin,
+  onOpenSupabaseModal,
 }) => {
   const [email, setEmail] = useState('teammisshkusa@gmail.com');
   const [password, setPassword] = useState('');
@@ -101,6 +103,41 @@ export const AdminLoginModal: React.FC<AdminLoginModalProps> = ({
           >
             {loading ? 'Authenticating...' : 'Sign In to Dashboard'}
           </button>
+
+          <div className="pt-4 border-t border-white/10 text-center space-y-3">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] text-slate-300 font-mono">
+              <span>Default Key:</span>
+              <span className="text-pink-400 font-bold">admin123</span>
+            </div>
+
+            <button
+              type="button"
+              onClick={async () => {
+                setEmail('teammisshkusa@gmail.com');
+                setPassword('admin123');
+                setLoading(true);
+                const success = await onLogin('teammisshkusa@gmail.com', 'admin123');
+                setLoading(false);
+                if (success) onClose();
+              }}
+              className="w-full py-2.5 rounded-full bg-white/10 hover:bg-white/15 text-slate-200 text-xs font-semibold uppercase tracking-wider flex items-center justify-center gap-2 transition"
+            >
+              <span>⚡ 1-Click Instant Admin Access</span>
+            </button>
+
+            {onOpenSupabaseModal && (
+              <button
+                type="button"
+                onClick={() => {
+                  onClose();
+                  onOpenSupabaseModal();
+                }}
+                className="w-full py-2 rounded-xl bg-emerald-950/40 hover:bg-emerald-950/70 border border-emerald-500/30 text-emerald-300 text-[11px] font-semibold uppercase tracking-wider flex items-center justify-center gap-1.5 transition"
+              >
+                <span>⚡ Need to Connect Supabase Database?</span>
+              </button>
+            )}
+          </div>
         </form>
       </div>
     </div>
